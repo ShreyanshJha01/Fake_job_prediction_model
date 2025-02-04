@@ -1,16 +1,21 @@
 #Fake Job Prediction Model
 
 Overview
+
 This project is focused on detecting fraudulent job postings in a dataset using natural language processing (NLP) and machine learning techniques. It uses the fake_job_postings.csv dataset, which contains various job posting attributes including job descriptions, company profiles, salary ranges, and other features. The goal is to identify which job postings are fraudulent and which are legitimate.
 
 The project utilizes techniques such as text preprocessing, feature extraction (CountVectorizer), and machine learning algorithms (Multinomial Naive Bayes) to train and evaluate a model that can classify job postings as fraudulent or not.
 
 Libraries Used
+
 The following Python libraries are used in this project:
 
 Pandas: For data manipulation and analysis.
+
 NumPy: For numerical operations.
+
 Matplotlib and Seaborn: For data visualization and plotting.
+
 Scikit-learn: For machine learning model building, evaluation, and feature extraction.
 NLTK: For natural language processing, specifically stop word removal.
 WordCloud: For generating word clouds.
