@@ -2,99 +2,103 @@ Fake Job Prediction Model
 
 
 Overview
+This project is focused on detecting fraudulent job postings using natural language processing (NLP) and machine learning techniques. It uses the fake_job_postings.csv dataset, which contains various job-related attributes including job descriptions, company profiles, required education, and more. The objective is to classify job postings as either fraudulent or legitimate.
 
-This project is focused on detecting fraudulent job postings in a dataset using natural language processing (NLP) and machine learning techniques. It uses the fake_job_postings.csv dataset, which contains various job posting attributes including job descriptions, company profiles, salary ranges, and other features. The goal is to identify which job postings are fraudulent and which are legitimate.
-
-
-The project utilizes techniques such as text preprocessing, feature extraction (CountVectorizer), and machine learning algorithms (Multinomial Naive Bayes) to train and evaluate a model that can classify job postings as fraudulent or not.
+The project involves text preprocessing, TF-IDF feature extraction, dataset balancing using SMOTE, and training multiple classification models. These models are then evaluated using standard metrics to determine their performance in identifying fraudulent listings.
 
 
 Libraries Used
-
 The following Python libraries are used in this project:
 
-Pandas: For data manipulation and analysis.
+Pandas: For data manipulation and analysis
 
-NumPy: For numerical operations.
+NumPy: For numerical operations
 
-Matplotlib and Seaborn: For data visualization and plotting.
+Matplotlib and Seaborn: For data visualization and plotting
 
-Scikit-learn: For machine learning model building, evaluation, and feature extraction.
+Scikit-learn: For machine learning model building, evaluation, and text vectorization (used for Multinomial Naive Bayes, Random Forest, and SVM)
 
-NLTK: For natural language processing, specifically stop word removal.
+NLTK: For natural language processing and stop word removal
 
-WordCloud: For generating word clouds.
+Imbalanced-learn: For class balancing using SMOTE
+
+XGBoost: For implementing the XGBoost classifier
+
+WordCloud: For generating visual representations of the most frequent words
 
 
 Dataset
+The dataset used in this project is called fake_job_postings.csv and is available on Kaggle:
 
-The dataset used in this project is called fake_job_postings.csv and can be found on Kaggle:
-
-[Real or Fake - Fake Job Posting Prediction Dataset](https://www.kaggle.com/datasets/shivamb/real-or-fake-fake-jobposting-prediction)
-
+🔗 Real or Fake - Fake Job Posting Prediction Dataset
 
 Preprocessing Steps
+Missing Value Handling
+Categorical columns: Filled with the string "Unknown"
 
-Missing Value Handling:
+Numerical columns: (if any) filled with median values
 
-Numerical columns: Missing values are filled with the median of the respective column.
+Text Data Processing
+Several textual columns (e.g., title, location, company_profile, description) are concatenated into a single text column
 
-Categorical columns: Missing values are filled with the string "Unknown".
+Stop words are removed from the text data using NLTK
 
+Feature Encoding
+Categorical columns such as required_experience, required_education, and employment_type are label-encoded for model compatibility
 
-Text Data Processing:
+Text Vectorization
+The text column is vectorized using TF-IDF (Term Frequency-Inverse Document Frequency) to convert the raw text into numerical features
 
-Several textual columns (e.g., title, location, company_profile) are concatenated into a single column text.
-
-Stop words are removed from the text data to enhance feature extraction.
-
-
-Feature Encoding:
-
-Categorical columns such as required_experience, required_education, and employment_type are encoded using LabelEncoder.
-
-
-Text Vectorization:
-
-The text data is vectorized using CountVectorizer to transform the text into a bag-of-words representation.
+Class Balancing
+The dataset is imbalanced, so SMOTE (Synthetic Minority Over-sampling Technique) is used to balance the target classes
 
 
 Model Training and Evaluation
 
-Model: Multinomial Naive Bayes (MultinomialNB) is used for classification, which is well-suited for text classification problems.
+Models Used
 
-Evaluation: The model's performance is evaluated using accuracy, classification report (precision, recall, F1-score), and a confusion matrix.
+Multinomial Naive Bayes
 
+Random Forest Classifier
+
+XGBoost Classifier
+
+Support Vector Machine (SVM)
+
+
+Evaluation Metrics
+
+Accuracy
+
+Classification Report (Precision, Recall, F1-score)
+
+Confusion Matrix
+
+Each model is trained and evaluated using the same preprocessing pipeline, and their results are compared to determine the best-performing approach.
 
 Visualizations
 
-Word Cloud for All Jobs: A word cloud is generated showing the most frequent words across all job postings.
+Confusion Matrices: Show the classification results for each model, including true positives, false positives, true negatives, and false negatives
 
-Word Cloud for Real Jobs: A separate word cloud for legitimate (non-fraudulent) job postings.
-
-Word Cloud for Fraudulent Jobs: A word cloud for fraudulent job postings.
-
-Confusion Matrix: A confusion matrix is displayed to evaluate the performance of the model in terms of true positives, true negatives, false positives, and false negatives.
+ROC Curves: Receiver Operating Characteristic curves are plotted for each model to visualize their performance in terms of the trade-off between true positive rate and false positive rate
 
 
 Files
 
-fake_job_postings.csv: The dataset containing job posting data.
+fake_job_postings.csv: The dataset containing job posting information
 
-fake_job_postings_detection.ipynb: The Jupyter notebook containing the code for the project.
+Fake job prediction.ipynb: The Jupyter notebook containing the complete code for the project
 
 
 Instructions to Run the Project
+Clone this repository to your local machine
 
-Clone this repository to your local machine.
+Install the required libraries (you can use pip install -r requirements.txt if available)
 
-Install the required dependencies.
+Download the dataset from Kaggle and place fake_job_postings.csv in the same directory as the notebook
 
-Download the fake_job_postings.csv file and place it in the same directory as the notebook.
-
-Run the Jupyter notebook fake_job_postings_detection.ipynb.
+Open and run the Jupyter notebook: Fake job prediction.ipynb
 
 
 Conclusion
-
-This project provides a robust approach for detecting fraudulent job postings using machine learning and NLP techniques. The results from the model can be further improved with more advanced techniques such as deep learning or by fine-tuning hyperparameters. This project serves as a valuable step toward automating the detection of fraudulent job postings, which can protect job seekers and employers from scams.
+This project demonstrates an effective approach to detecting fraudulent job postings using NLP and machine learning. By combining TF-IDF vectorization, SMOTE, and multiple classification models, the solution achieves solid performance in identifying scams. Future improvements could involve hyperparameter tuning, deep learning methods, or using additional external features to further enhance prediction accuracy.
